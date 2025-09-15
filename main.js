@@ -7,18 +7,33 @@
 // }
 
 // console.log(greet("Bob"));
-
-const mainText = document.getElementById("main-text");
 // mainText.innerHTML = "Hello, World!";
 
-class mahasiswa {
-    constructor(nama, nim, jurusan) {
+class bank {
+    constructor(nama, saldo) {
         this.nama = nama;
-        this.nim = nim;
-        this.jurusan = jurusan;
+        this.saldo = saldo;
+    }
+    deposit(jumlah_setoran) {
+        this.saldo += jumlah_setoran;
+        return this.saldo;
+    }
+    tarik(jumlah_penarikan) {
+        if (jumlah_penarikan > this.saldo) {
+            alert("Saldo tidak cukup");
+        } else {
+            this.saldo -= jumlah_penarikan;
+        }
+        return this.saldo;
+    }
+    cek_saldo() {
+        return `nama: ${this.nama}  saldo: ${this.saldo}`;
     }
 }
+// import mahasiswa from "./mhs.js";
+const mainText = document.getElementById("main-text");
 
-const mhs = new mahasiswa("egan", "123", "Informatika");
-mainText.innerText = mhs.nama;
-mainText.innnerText = mhs.nama;
+const mhs = new bank("akbar", 1000);
+mhs.tarik(500);
+
+mainText.innerText = mhs.cek_saldo();
